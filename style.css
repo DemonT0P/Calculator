@@ -1,0 +1,20 @@
+.screen{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+button{
+    width: 80px;
+    height: 80px;
+    margin: 3px;
+}
+
+.display{
+    text-align: end;
+    background-color: antiquewhite;
+    margin: 3px;
+    height: 80px;
+    font-size: 80px;
+}
