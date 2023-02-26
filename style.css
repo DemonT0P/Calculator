@@ -9,12 +9,28 @@ button{
     width: 80px;
     height: 80px;
     margin: 3px;
+    background-color: #F6F7EB;
+    border-radius: 8px;
+
 }
 
 .display{
     text-align: end;
-    background-color: antiquewhite;
+    background-color: #F6F7EB;
     margin: 3px;
     height: 80px;
     font-size: 80px;
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+
+.color{
+    padding: 16px;
+    background-color: #0B132B;
+    border-radius: 8px;
+}
+
+#erase, #clear {
+    width: 47.5%;
 }
