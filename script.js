@@ -1,3 +1,11 @@
+/*
+- You should round answers with long decimals so that they don’t overflow the screen.;
+- Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!;
+- Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display);
+- Add keyboard support! You might run into an issue where keys such as (/) might cause you some trouble. Read the MDN documentation for event.preventDefault to help solve this problem.
+https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+*/
 let add = (num1, num2) => num1+num2;
 let subtract = (num1, num2) => num1 - num2;
 let multiply = (num1, num2) => num1 * num2;
@@ -18,7 +26,6 @@ function calculateStringEqual(){
     let totalAux = refactorString(total);
     if(totalAux.length==2 && display.textContent == totalAux[0]){
         total += totalAux[0];
-
         calculateString();
     } else {
         calculateString();
@@ -56,9 +63,15 @@ function calculateString(){
         total = `${calculus} `
     } else
     if(totalAux[1]=='/'){
-        calculus = Number(totalAux[0]) / Number(totalAux[2]);
-        display.textContent = calculus;
-        total = `${calculus} `
+        if(Number(totalAux[2]==0)){
+            alert("Don't divide by zero grrrrr");
+            display.textContent = 0;
+        } else {
+            calculus = Number(totalAux[0]) / Number(totalAux[2]);
+            display.textContent = calculus;
+            total = `${calculus} `
+        }
+        
     }
 }
 
@@ -290,7 +303,15 @@ buttonEqual.addEventListener('click', ()=>{
     flag = 1;
     if(refactorString(total).length > 1){
         total += display.textContent;
-        console.log(total);
         calculateStringEqual();
+    }
+})
+
+let buttonPoint = document.querySelector('#point');
+buttonPoint.addEventListener('click', ()=>{
+    if((display.textContent).includes('.')){
+        alert('You already clicked on the decimal button, u silly ;P');
+    } else {
+        
     }
 })
