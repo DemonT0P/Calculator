@@ -1,41 +1,39 @@
 /*
 - You should round answers with long decimals so that they don’t overflow the screen.;
-- Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!;
-- Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display);
 - Add keyboard support! You might run into an issue where keys such as (/) might cause you some trouble. Read the MDN documentation for event.preventDefault to help solve this problem.
 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
 
 */
-let add = (num1, num2) => num1+num2;
+let add = (num1, num2) => num1 + num2;
 let subtract = (num1, num2) => num1 - num2;
 let multiply = (num1, num2) => num1 * num2;
-let divide = (num1, num2) => num1/num2;
+let divide = (num1, num2) => num1 / num2;
 
 let total = '';
 let flag = 1;
 let display = document.querySelector('.display');
 
-function refactorString(total){
+function refactorString(total) {
     let totalAux = total.split(" ");
-    totalAux = totalAux.map((string)=> string.trim());
-    totalAux = totalAux.filter((string)=> string.length>=1);
+    totalAux = totalAux.map((string) => string.trim());
+    totalAux = totalAux.filter((string) => string.length >= 1);
     return totalAux;
 }
 
-function calculateStringEqual(){
+function calculateStringEqual() {
     let totalAux = refactorString(total);
-    if(totalAux.length==2 && display.textContent == totalAux[0]){
+    if (totalAux.length == 2 && display.textContent == totalAux[0]) {
         total += totalAux[0];
         calculateString();
     } else {
         calculateString();
     }
-    flag = 1;   
+    flag = 1;
 }
 
-function verifyChange(){
+function verifyChange() {
     let totalAux = refactorString(total);
-    if(totalAux.length > 2){
+    if (totalAux.length > 2) {
         return false;
     } else {
         return true;
@@ -44,57 +42,57 @@ function verifyChange(){
 
 
 
-function calculateString(){
+function calculateString() {
     let calculus = 0;
     let totalAux = refactorString(total);
-    if(totalAux[1]=='+'){
+    if (totalAux[1] == '+') {
         calculus = Number(totalAux[0]) + Number(totalAux[2]);
         display.textContent = calculus;
         total = `${calculus} `
     } else
-    if(totalAux[1]=='-'){
-        calculus = Number(totalAux[0]) - Number(totalAux[2]);
-        display.textContent = calculus;
-        total = `${calculus} `
-    } else 
-    if(totalAux[1]=='x'){
-        calculus = Number(totalAux[0]) * Number(totalAux[2]);
-        display.textContent = calculus;
-        total = `${calculus} `
-    } else
-    if(totalAux[1]=='/'){
-        if(Number(totalAux[2]==0)){
-            alert("Don't divide by zero grrrrr");
-            display.textContent = 0;
-        } else {
-            calculus = Number(totalAux[0]) / Number(totalAux[2]);
+        if (totalAux[1] == '-') {
+            calculus = Number(totalAux[0]) - Number(totalAux[2]);
             display.textContent = calculus;
             total = `${calculus} `
-        }
-        
-    }
+        } else
+            if (totalAux[1] == 'x') {
+                calculus = Number(totalAux[0]) * Number(totalAux[2]);
+                display.textContent = calculus;
+                total = `${calculus} `
+            } else
+                if (totalAux[1] == '/') {
+                    if (Number(totalAux[2] == 0)) {
+                        alert("Don't divide by zero grrrrr");
+                        display.textContent = 0;
+                    } else {
+                        calculus = Number(totalAux[0]) / Number(totalAux[2]);
+                        display.textContent = calculus;
+                        total = `${calculus} `
+                    }
+
+                }
 }
 
 let button0 = document.querySelector('#zero');
-button0.addEventListener('click', ()=>{
-    if(display.textContent == '0')
+button0.addEventListener('click', () => {
+    if (display.textContent == '0')
         display.textContent = '0';
     else {
         display.textContent += `0`;
     }
     let totalAux = refactorString(total);
-    if(totalAux.length == 2)
+    if (totalAux.length == 2)
         display.textContent = `0`;
 })
 
 let button1 = document.querySelector('#one');
-button1.addEventListener('click', ()=>{
+button1.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '1';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '1';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '1';
         flag = 0;
     } else {
@@ -103,13 +101,13 @@ button1.addEventListener('click', ()=>{
 })
 
 let button2 = document.querySelector('#two');
-button2.addEventListener('click', ()=>{
+button2.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '2';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '2';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '2';
         flag = 0;
     } else {
@@ -118,13 +116,13 @@ button2.addEventListener('click', ()=>{
 })
 
 let button3 = document.querySelector('#three');
-button3.addEventListener('click', ()=>{
+button3.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '3';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '3';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '3';
         flag = 0;
     } else {
@@ -133,13 +131,13 @@ button3.addEventListener('click', ()=>{
 })
 
 let button4 = document.querySelector('#four');
-button4.addEventListener('click', ()=>{
+button4.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '4';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '4';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '4';
         flag = 0;
     } else {
@@ -148,13 +146,13 @@ button4.addEventListener('click', ()=>{
 })
 
 let button5 = document.querySelector('#five');
-button5.addEventListener('click', ()=>{
+button5.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '5';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '5';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '5';
         flag = 0;
     } else {
@@ -163,13 +161,13 @@ button5.addEventListener('click', ()=>{
 })
 
 let button6 = document.querySelector('#six');
-button6.addEventListener('click', ()=>{
+button6.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '6';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '6';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '6';
         flag = 0;
     } else {
@@ -178,13 +176,13 @@ button6.addEventListener('click', ()=>{
 })
 
 let button7 = document.querySelector('#seven');
-button7.addEventListener('click', ()=>{
+button7.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '7';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '7';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '7';
         flag = 0;
     } else {
@@ -193,13 +191,13 @@ button7.addEventListener('click', ()=>{
 })
 
 let button8 = document.querySelector('#eight');
-button8.addEventListener('click', ()=>{
+button8.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '8';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '8';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '8';
         flag = 0;
     } else {
@@ -208,13 +206,13 @@ button8.addEventListener('click', ()=>{
 })
 
 let button9 = document.querySelector('#nine');
-button9.addEventListener('click', ()=>{
+button9.addEventListener('click', () => {
     let totalAux = refactorString(total);
-    if(total == '' && display.textContent == '0'){
+    if (total == '' && display.textContent == '0') {
         display.textContent = '9';
-    } else if(total == '' && display.textContent != '0'){
+    } else if (total == '' && display.textContent != '0') {
         display.textContent += '9';
-    } else if(flag == 1 && totalAux!=undefined && display.textContent != '0'){
+    } else if (flag == 1 && totalAux != undefined && display.textContent != '0') {
         display.textContent = '9';
         flag = 0;
     } else {
@@ -223,95 +221,95 @@ button9.addEventListener('click', ()=>{
 })
 
 let buttonAdd = document.querySelector('#add');
-buttonAdd.addEventListener('click', ()=>{
-    if(refactorString(total).length < 2){
+buttonAdd.addEventListener('click', () => {
+    if (refactorString(total).length < 2) {
         total = display.textContent;
-        total += ' + ' 
-    } else if(refactorString(total).length == 2){
+        total += ' + '
+    } else if (refactorString(total).length == 2) {
         total += display.textContent;
     }
-    if(refactorString(total).length == 3){
+    if (refactorString(total).length == 3) {
         calculateString();
-        total += '+ ' 
+        total += '+ '
     }
     flag = 1;
 })
 
 let buttonSubtract = document.querySelector('#subtract');
-buttonSubtract.addEventListener('click', ()=>{
-    if(refactorString(total).length < 2){
+buttonSubtract.addEventListener('click', () => {
+    if (refactorString(total).length < 2) {
         total = display.textContent;
-        total += ' - ' 
-    } else if(refactorString(total).length == 2){
+        total += ' - '
+    } else if (refactorString(total).length == 2) {
         total += display.textContent;
     }
-    if(refactorString(total).length == 3){
+    if (refactorString(total).length == 3) {
         calculateString();
-        total += '- ' 
+        total += '- '
     }
-    flag = 1;  
+    flag = 1;
 })
 
 let buttonDivide = document.querySelector('#divide');
-buttonDivide.addEventListener('click', ()=>{
-    if(refactorString(total).length < 2){
+buttonDivide.addEventListener('click', () => {
+    if (refactorString(total).length < 2) {
         total = display.textContent;
-        total += ' / ' 
-    } else if(refactorString(total).length == 2){
+        total += ' / '
+    } else if (refactorString(total).length == 2) {
         total += display.textContent;
     }
-    if(refactorString(total).length == 3){
+    if (refactorString(total).length == 3) {
         calculateString();
-        total += '/ ' 
+        total += '/ ';
     }
-    flag = 1; 
+    flag = 1;
 })
 
 let buttonMultiply = document.querySelector('#multiply');
-buttonMultiply.addEventListener('click', ()=>{
-    if(refactorString(total).length < 2){
+buttonMultiply.addEventListener('click', () => {
+    if (refactorString(total).length < 2) {
         total = display.textContent;
-        total += ' x ' 
-    } else if(refactorString(total).length == 2){
+        total += ' x '
+    } else if (refactorString(total).length == 2) {
         total += display.textContent;
     }
-    if(refactorString(total).length == 3){
+    if (refactorString(total).length == 3) {
         calculateString();
-        total += 'x ' 
+        total += 'x '
     }
     flag = 1;
 })
 
 let buttonErase = document.querySelector('#erase');
-buttonErase.addEventListener('click', ()=>{
+buttonErase.addEventListener('click', () => {
     flag = 1;
-    display.textContent = (display.textContent).substring(0, (display.textContent).length-1);
-    if((display.textContent).length == 0){
+    display.textContent = (display.textContent).substring(0, (display.textContent).length - 1);
+    if ((display.textContent).length == 0) {
         display.textContent = 0;
     }
 })
 
 let buttonClear = document.querySelector('#clear');
-buttonClear.addEventListener('click', ()=>{
+buttonClear.addEventListener('click', () => {
     flag = 1;
     display.textContent = 0;
     total = '';
 })
 
 let buttonEqual = document.querySelector("#equals");
-buttonEqual.addEventListener('click', ()=>{
+buttonEqual.addEventListener('click', () => {
     flag = 1;
-    if(refactorString(total).length > 1){
+    if (refactorString(total).length > 1) {
         total += display.textContent;
         calculateStringEqual();
     }
 })
 
 let buttonPoint = document.querySelector('#point');
-buttonPoint.addEventListener('click', ()=>{
-    if((display.textContent).includes('.')){
+buttonPoint.addEventListener('click', () => {
+    if ((display.textContent).includes('.')) {
         alert('You already clicked on the decimal button, u silly ;P');
     } else {
-        
+        display.textContent += '.'
     }
 })
